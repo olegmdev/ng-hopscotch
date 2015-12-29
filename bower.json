@@ -1,0 +1,24 @@
+{
+  "name": "ng-hopscotch",
+  "homepage": "https://github.com/qu1ze/ng-hopscotch",
+  "description": "Hopscotch angular wrapper",
+  "main": "index.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "Hopscotch",
+    "Angular"
+  ],
+  "authors": [
+    "Oleg Meleshko <oleg.meleshko.dev@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
