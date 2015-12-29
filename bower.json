@@ -3,6 +3,7 @@
   "homepage": "https://github.com/qu1ze/ng-hopscotch",
   "description": "Hopscotch angular wrapper",
   "main": "index.js",
+  "version" : "0.0.1",
   "moduleType": [
     "globals"
   ],
@@ -20,5 +21,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "hopscotch": "~0.2.5"
+  }
 }
