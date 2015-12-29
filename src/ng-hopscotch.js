@@ -1,10 +1,6 @@
-var ngHopscotch = angular.module('ngHopscotch', []);
+angular.module('ngHopscotch', []);
 
-ngHopscotch.factory('HSTour', ['hopscotch', function(hopscotch) {
-  return hopscotch;
-}]);
-
-ngHopscotch.factory('hopscotch', function() {
+angular.module('ngHopscotch').factory('hopscotch', function() {
   if (!window.hopscotch) {
     throw new Error('Missing hopscotch dependency');
   }
@@ -12,3 +8,6 @@ ngHopscotch.factory('hopscotch', function() {
   return window.hopscotch;
 });
 
+angular.module('ngHopscotch').factory('HSTour', ['hopscotch', function(hopscotch) {
+  return hopscotch;
+}]);
