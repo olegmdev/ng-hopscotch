@@ -3,7 +3,7 @@
   "homepage": "https://github.com/qu1ze/ng-hopscotch",
   "description": "Hopscotch angular wrapper",
   "main": "index.js",
-  "version" : "0.0.4",
+  "version" : "0.1.0",
   "moduleType": [
     "globals"
   ],

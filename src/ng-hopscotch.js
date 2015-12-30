@@ -1,7 +1,7 @@
-function HSRemoveTourItem(element, isFinal) {
+function HSRemoveTourItem(element, tourId, isFinal) {
   var current = document.querySelector('.hopscotch-bubble:not(.hide)');
   current.parentNode.removeChild(current);
-  isFinal && localStorage.setItem('HSTour:completed', 1);
+  isFinal && localStorage.setItem('HSTour:' + tourId + ':completed', 1);
 };
 
 angular.module('ngHopscotch', []);
@@ -59,7 +59,7 @@ angular.module('ngHopscotch').service('HSTour', ['hopscotch', 'HSHelper', 'HSCac
     };
 
     tour.steps.forEach(function(step) {
-      step.content += "<br /><a style='position:absolute;bottom:20px' href='#' onclick='HSRemoveTourItem(this, " + !!isFinal + ")'>Skip all</a>"
+      step.content += "<br /><a style='position:absolute;bottom:20px' href='#' onclick='HSRemoveTourItem(this,\"" + tour.id + "\"," + !!isFinal + ")'>Skip all</a>"
     });
   };
 
@@ -67,15 +67,19 @@ angular.module('ngHopscotch').service('HSTour', ['hopscotch', 'HSHelper', 'HSCac
     this.tour = tour;
   };
 
-  HSTour.prototype.start = function(isFinal) {
+  HSTour.prototype.start = function(isFinal, stepNum) {
     HSTour.patch(this.tour, isFinal);
-    if (!isFinal || (isFinal && (!parseInt(localStorage.getItem('HSTour:completed')) && (!HSCache.isEnded && !HSCache.isClosed)))) {
-      hopscotch.startTour(this.tour);
+    if (!isFinal || (isFinal && (!parseInt(localStorage.getItem('HSTour:' + this.tour.id + ':completed')) && (!HSCache.isEnded && !HSCache.isClosed)))) {
+      hopscotch.startTour(this.tour, stepNum);
     }
   };
 
   HSTour.prototype.end = function(clearCookie) {
     hopscotch.endTour(clearCookie);
+  };
+
+  HSTour.prototype.getCurrentStep = function() {
+    return this.tour.steps[hopscotch.getCurrStepNum()];
   };
 
   HSTour.prototype.bind = function(options) {
